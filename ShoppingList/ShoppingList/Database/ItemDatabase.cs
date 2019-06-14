@@ -19,7 +19,7 @@ namespace ShoppingList.Database
 
         public Task<List<ItemModel>> GetItemsAsync()
         {
-            return _database.Table<ItemModel>().ToListAsync();
+            return _database.QueryAsync<ItemModel>("SELECT * FROM [ItemModel] ORDER BY [StoreName] ASC");
         } 
 
         public Task<ItemModel> GetItemAsync(int id)
@@ -28,21 +28,21 @@ namespace ShoppingList.Database
                 .FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(ItemModel item)
+        public Task<int> SaveItemAsync(ItemModel i)
         {
-            if (item.Id != 0)
+            if (i.Id != 0)
             {
-                return _database.UpdateAsync(item);
+                return _database.UpdateAsync(i);
             }
             else
             {
-                return _database.InsertAsync(item);
+                return _database.InsertAsync(i);
             }
         }
 
-        public Task<int> DeleteItemAsyn(ItemModel item)
+        public Task<int> DeleteItemAsyn(ItemModel i)
         {
-            return _database.DeleteAsync(item);
+            return _database.DeleteAsync(i);
         }
     }
 }

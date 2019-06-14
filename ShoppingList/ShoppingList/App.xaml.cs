@@ -8,7 +8,7 @@ namespace ShoppingList
 {
     public partial class App : Application
     {
-        private static ItemDatabase database;
+        static ItemDatabase database;
 
         public static ItemDatabase Database
         {
@@ -16,9 +16,9 @@ namespace ShoppingList
             {
                 if (database == null)
                 {
-                    database = new ItemDatabase(Path.Combine(Environment.GetFolderPath(
-                        Environment.SpecialFolder.LocalApplicationData), 
-                        "ShoppingList.db3"));
+                    database = 
+                        new ItemDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                        "list.db3"));
                 }
                 return database;
             }
@@ -28,7 +28,7 @@ namespace ShoppingList
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new ItemsPage());
         }
 
         protected override void OnStart()

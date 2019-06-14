@@ -10,6 +10,7 @@ namespace ShoppingList.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string ItemName { get; set; }
+        public string StoreName { get; set; }
         public DateTime Date { get; set; }
     }
 }
