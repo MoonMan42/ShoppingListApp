@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ShoppingList
+namespace ShoppingList.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemEntry : ContentPage
@@ -18,7 +18,7 @@ namespace ShoppingList
             InitializeComponent();
         }
 
-        public  async void OnSavedButtonClicked(object sender, EventArgs e)
+        public async void OnSavedButtonClicked(object sender, EventArgs e)
         {
             var item = (ItemModel)BindingContext;
 

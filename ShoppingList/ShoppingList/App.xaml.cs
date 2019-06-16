@@ -1,4 +1,5 @@
 ﻿using ShoppingList.Database;
+using ShoppingList.Views;
 using System;
 using System.IO;
 using Xamarin.Forms;
@@ -28,7 +29,7 @@ namespace ShoppingList
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ItemsPage());
+            MainPage = new NavigationPage(new StorePage());
         }
 
         protected override void OnStart()

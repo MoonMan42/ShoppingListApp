@@ -4,15 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ShoppingList.ItemEntry">
+             x:Class="ShoppingList.Views.ItemEntry">
 
 
     <StackLayout Margin="20" >
         <Editor Placeholder="Enter your item..."
                 Text="{Binding ItemName}"
-                 />
+                />
         <Editor Placeholder="Enter the store..."
                 Text="{Binding StoreName}" />
+        <Editor Text="{Binding Quantity}" Keyboard="Numeric"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

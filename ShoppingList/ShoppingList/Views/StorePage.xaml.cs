@@ -8,26 +8,24 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ShoppingList
+namespace ShoppingList.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemsPage : ContentPage
+    public partial class StorePage : ContentPage
     {
-        public ItemsPage()
+        public StorePage()
         {
             InitializeComponent();
-
-            BindingContext = this;
         }
 
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            listView.ItemsSource = await App.Database.GetItemsAsync();
+            storeListView.ItemsSource = await App.Database.GetStoreNameAsync();
         }
 
-        public async void OnItemAddedClicked (object sender, EventArgs e)
+        public async void OnItemAddedClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ItemEntry
             {
@@ -37,14 +35,19 @@ namespace ShoppingList
 
         public async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            var item = (ItemModel)e.SelectedItem;
+
+            //await DisplayAlert("Test", "" + item.StoreName, "Ok"); // alert dialog box
+
             if (e.SelectedItem != null)
             {
-                await Navigation.PushAsync(new ItemEntry
+                await Navigation.PushAsync(new ItemsPage(item.StoreName)
                 {
                     BindingContext = e.SelectedItem as ItemModel
 
                 });
             }
         }
+
     }
 }
