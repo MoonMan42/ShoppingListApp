@@ -13,10 +13,16 @@ namespace ShoppingList.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemEntry : ContentPage
     {
+
         public ItemEntry()
         {
             InitializeComponent();
         }
+
+        public ItemEntry(string storeName)
+        {
+            InitializeComponent();
+        }       
 
         public async void OnSavedButtonClicked(object sender, EventArgs e)
         {

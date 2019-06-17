@@ -12,8 +12,10 @@
                 Text="{Binding ItemName}"
                 />
         <Editor Placeholder="Enter the store..."
-                Text="{Binding StoreName}" />
-        <Editor Text="{Binding Quantity}" Keyboard="Numeric"/>
+                Text="{Binding StoreName}"
+                />
+        <Editor Text="{Binding Quantity}" Keyboard="Numeric"
+                />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

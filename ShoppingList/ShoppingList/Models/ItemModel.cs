@@ -13,5 +13,12 @@ namespace ShoppingList.Models
         public string StoreName { get; set; }
         public int Quantity { get; set; } = 1;
         public DateTime Date { get; set; }
+
+        public ItemModel() { }
+
+        public ItemModel(string store)
+        {
+            StoreName = store;
+        }
     }
 }

@@ -42,12 +42,13 @@ namespace ShoppingList.Views
         {
             await Navigation.PushAsync(new ItemEntry
             {
-                BindingContext = new ItemModel()
-            });
+                BindingContext = new ItemModel(storeName)
+            }) ;
         }
 
         public async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+
             if (e.SelectedItem != null)
             {
                 await Navigation.PushAsync(new ItemEntry
