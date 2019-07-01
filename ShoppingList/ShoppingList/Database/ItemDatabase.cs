@@ -38,10 +38,17 @@ namespace ShoppingList.Database
 
         public Task<List<ItemModel>> GetItemsByStoreAsync(string storeName)
         {
-            storeName = storeName.Replace("'", "''");
+            storeName = storeName.Replace("'", "''"); // check for apostrophe
             return _database.QueryAsync<ItemModel>($"SELECT * FROM [ItemModel] WHERE [StoreName] = \'{storeName}\' ORDER BY [StoreName] ASC");
         }
 
+        /// <summary>
+        /// Save individual items
+        /// </summary>
+        public Task<List<ItemModel>> SaveItemSelectedAsync(int id, int selected)
+        {
+            return _database.QueryAsync<ItemModel>($"UPDATE [ItemModel] SET [isSelected] = \'{selected}\' WHERE [Id] = {id}");
+        }
 
         /// <summary>
         /// get item info
@@ -54,6 +61,12 @@ namespace ShoppingList.Database
                 .FirstOrDefaultAsync();
         }
 
+
+        /// <summary>
+        /// Save item to database
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public Task<int> SaveItemAsync(ItemModel i)
         {
             if (i.Id != 0)
@@ -66,9 +79,17 @@ namespace ShoppingList.Database
             }
         }
 
+        /// <summary>
+        /// 
+        /// Delete item from database 
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public Task<int> DeleteItemAsyn(ItemModel i)
         {
             return _database.DeleteAsync(i);
         }
+
+        
     }
 }
