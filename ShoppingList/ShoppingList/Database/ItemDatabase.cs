@@ -90,6 +90,11 @@ namespace ShoppingList.Database
             return _database.DeleteAsync(i);
         }
 
-        
+        // Remove Greyed out options. 
+        public Task<List<ItemModel>> DeleteSelectedItems(string store)
+        {
+            store = store.Replace("'", "''"); // check for apostrophe
+            return _database.QueryAsync<ItemModel>($"DELETE FROM [ItemModel] WHERE [StoreName] = \'{store}\' AND [SelectedColor] = \"Gray\""); 
+        }
     }
 }

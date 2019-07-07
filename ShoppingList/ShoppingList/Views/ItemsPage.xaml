@@ -4,36 +4,33 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ShoppingList.Views.ItemsPage">
+             x:Class="ShoppingList.Views.ItemsPage"
+             Title="{Binding StoreName}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+"
                      Clicked="OnItemAddedClicked" />
     </ContentPage.ToolbarItems>
 
-    
+    <StackLayout>
 
-    <ListView x:Name="listView" 
-                  ItemSelected="OnListViewItemSelected" >
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
 
-                            <TextCell Text="{Binding ItemName}"
-                                   Grid.Column="0"/>
-                        </Grid>
-                        
-                    </StackLayout>
-                </ViewCell>
-                <!--<TextCell Text="{Binding ItemName}" />-->
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        <ListView x:Name="listView"
+                    Margin="20"
+                    ItemSelected="OnListViewItemSelected"
+                    >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding DisplayInfo}"
+                                TextColor="{Binding SelectedColor}"
+                                
+                                />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Remove Selected" Clicked="RemoveSelectedClick" />
+
+    </StackLayout>   
 
 </ContentPage>

@@ -51,12 +51,31 @@ namespace ShoppingList.Views
 
             if (e.SelectedItem != null)
             {
-                await Navigation.PushAsync(new ItemEntry
+                var item = (ItemModel)e.SelectedItem as ItemModel;
+                if (item.SelectedColor == "Blue")
                 {
-                    BindingContext = e.SelectedItem as ItemModel
+                    item.SelectedColor = "Gray";
+                } else
+                {
+                    item.SelectedColor = "Blue";
+                }
+                await App.Database.SaveItemAsync(item);
+                OnAppearing(); // redraw display
 
-                });
+
+                //await Navigation.PushAsync(new ItemEntry
+                //{
+                //    BindingContext = e.SelectedItem as ItemModel
+
+                //});
             }
+        }
+
+
+        public async void RemoveSelectedClick(object sender, EventArgs e)
+        {
+            await App.Database.DeleteSelectedItems(storeName);
+            OnAppearing();
         }
     }
 }
